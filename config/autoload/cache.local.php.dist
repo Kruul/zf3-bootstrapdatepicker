@@ -1,0 +1,22 @@
+<?php
+return [
+    'edpgithub' => [
+        /**
+         * Cache configuration
+         */
+        'cache' => [
+            'adapter'   => [
+                'name' => 'filesystem',
+                'options' => [
+                    'cache_dir' => realpath('./data/cache'),
+                    'writable' => true,
+                ],
+            ],
+            'plugins' => [
+                'exception_handler' => ['throw_exceptions' => true],
+                'serializer',
+            ],
+        ],
+        'cache_key' => 'github_api',
+    ],
+];

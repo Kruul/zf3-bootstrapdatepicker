@@ -1,0 +1,37 @@
+<div class="accordion" id="org-accordion">
+    <?php foreach ($orgs as $org): ?>
+        <div class="module-row">
+            <div class="accordion-group">
+                <div class="module-info">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <img src="<?php echo $this->escapeHtmlAttr($org->avatar_url) ?>" class="img-responsive" alt="<?php echo $this->escapeHtmlAttr($org->login) ?>" />
+                        </div>
+                        <div class="col-xs-10">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#org-accordion" href="#org-<?php echo $this->escapeHtmlAttr($org->login) ?>">
+                                <?php echo $this->escapeHtml($org->login) ?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row accordion-body collapse" id="org-<?php echo $this->escapeHtmlAttr($org->login) ?>">
+            <div class="module-description">
+                <div class="col-md-12" id="org-content-<?php echo $this->escapeHtmlAttr($org->login) ?>">
+                    <div class="well" style="text-align:center">Synchronizing with GitHub <img src="<?php echo $this->basePath('img/ajax-loader.gif') ?>" alt="loading" /></div>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        $jsTemplate = <<<'JAVASCRIPT'
+        $('#org-%s').on("show.bs.collapse", function () {
+            $('#org-content-%s').load("%s");
+        });
+JAVASCRIPT;
+
+        $this->inlineScript()->appendScript(sprintf($jsTemplate, $org->login, $org->login, $this->url('zf-module/list', ['owner' => $org->login])));
+        ?>
+    <?php endforeach; ?>
+</div>
