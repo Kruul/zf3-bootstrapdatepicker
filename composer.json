@@ -1,0 +1,21 @@
+{
+  "name": "jenzri-nizar/zf3-bootstrapdatepicker",
+  "description": "Zend Framework bootstrap datepicker",
+  "keywords": ["zf3", "bootstrap","datepicker"],
+  "license": [
+    "MIT"
+  ],
+  "authors": [
+    {
+      "name": "Jenzri Nizar",
+      "email": "jenzri.nizar.off@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^5.5 || ^7.0",
+    "zendframework/zend-form": "^2.9.2"
+  },
+  "autoload": {
+    "psr-4": { "Zf3\\Bootstrapdatepicker\\": "src/" }
+  }
+}
